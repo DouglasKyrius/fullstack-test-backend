@@ -11,6 +11,13 @@ type User {
   username: String!
 }
 
+type LoggedUserOutput {
+  """
+  Generated access_token of the user
+  """
+  access_token: String!
+}
+
 type Query {
   users: [User!]!
   user(_id: String!): User!
@@ -20,6 +27,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(_id: String!): User!
+  loginUser(loginUserInput: LoginUserInput!): LoggedUserOutput!
 }
 
 input CreateUserInput {
@@ -27,6 +35,11 @@ input CreateUserInput {
   username
   """
   username: String!
+
+  """
+  password of the user
+  """
+  password: String!
 }
 
 input UpdateUserInput {
@@ -34,5 +47,22 @@ input UpdateUserInput {
   username
   """
   username: String
+
+  """
+  password of the user
+  """
+  password: String
   _id: String!
+}
+
+input LoginUserInput {
+  """
+  username of the user
+  """
+  username: String!
+
+  """
+  password of the user
+  """
+  password: String!
 }

@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { AuthModule } from './auth.module';
+import { MongoModule } from './mongo.module';
 import { ConfigModule } from './config.module';
 import { GraphqlModule } from './graphql.module';
-import { MongoModule } from './mongo.module';
 
 @Module({
-  imports: [ConfigModule, GraphqlModule, MongoModule],
-  exports: [ConfigModule, GraphqlModule, MongoModule],
+  imports: [AuthModule, ConfigModule, GraphqlModule, MongoModule],
+  exports: [AuthModule, ConfigModule, GraphqlModule, MongoModule],
 })
 export class CommonModule {}

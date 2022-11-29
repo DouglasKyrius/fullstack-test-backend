@@ -11,6 +11,9 @@ export class User {
   @Prop()
   @Field(() => String, { description: 'Username' })
   username: string;
+
+  @Prop()
+  password: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
