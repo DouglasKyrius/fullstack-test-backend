@@ -13,9 +13,9 @@ type User {
 
 type LoggedUserOutput {
   """
-  Generated access_token of the user
+  Generated access token of the user
   """
-  access_token: String!
+  accessToken: String!
 }
 
 type Query {
@@ -24,7 +24,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
+  createUser(createUserInput: CreateUserInput!): LoggedUserOutput!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(_id: String!): User!
   loginUser(loginUserInput: LoginUserInput!): LoggedUserOutput!

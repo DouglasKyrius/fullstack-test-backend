@@ -26,11 +26,11 @@ export class AuthService {
   async generateUserCredentials(user: User) {
     const payload = {
       username: user.username,
-      sub: user._id,
+      _id: user._id,
     };
 
     return {
-      access_token: this.jwtTokenService.sign(payload),
+      accessToken: this.jwtTokenService.sign(payload),
     };
   }
 }

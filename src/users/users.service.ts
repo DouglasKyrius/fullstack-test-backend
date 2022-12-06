@@ -21,11 +21,19 @@ export class UsersService {
   ) {}
 
   async create(createUserInput: CreateUserInput) {
+    const userExists = await this.userModel
+      .findOne({ username: createUserInput.username })
+      .exec();
+    if (userExists) {
+      throw new BadRequestException(
+        `Username ${createUserInput.username} is already in use`,
+      );
+    }
     const saltOrRounds = 10;
     const password = createUserInput.password;
     createUserInput.password = await bcrypt.hash(password, saltOrRounds);
-    const user = new this.userModel(createUserInput);
-    return user.save();
+    const user = await new this.userModel(createUserInput).save();
+    return this.authService.generateUserCredentials(user);
   }
 
   findAll() {
